@@ -34,8 +34,6 @@ public class MainActivity extends RoboActionBarActivity
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
 
-        if (fab == null){System.out.println("Я твоё очко маман ебал");}
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
