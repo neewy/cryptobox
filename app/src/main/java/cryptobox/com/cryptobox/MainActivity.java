@@ -1,6 +1,8 @@
 package cryptobox.com.cryptobox;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,6 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.File;
+import java.util.List;
+
+import de.slackspace.openkeepass.KeePassDatabase;
+import de.slackspace.openkeepass.domain.Entry;
+import de.slackspace.openkeepass.domain.Group;
+import de.slackspace.openkeepass.domain.KeePassFile;
 import roboguice.RoboGuice;
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.activity.RoboActivity;
@@ -23,22 +32,26 @@ import roboguice.inject.InjectView;
 public class MainActivity extends RoboActionBarActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @InjectView(R.id.toolbar) Toolbar toolbar;
-    @InjectView(R.id.fab) FloatingActionButton fab;
-    @InjectView(R.id.drawer_layout) DrawerLayout drawer;
-    @InjectView(R.id.nav_view) NavigationView navigationView;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
+    @InjectView(R.id.fab)
+    FloatingActionButton fab;
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @InjectView(R.id.nav_view)
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        RoboGuice.getInjector(this).injectMembersWithoutViews(this);
+        // RoboGuice.getInjector(this).injectMembersWithoutViews(this);
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent myIntent = new Intent(MainActivity.this, EntryList.class);
+                MainActivity.this.startActivity(myIntent);
             }
         });
 
